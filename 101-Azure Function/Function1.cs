@@ -7,6 +7,8 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Net;
+using System.Text;
 
 namespace _101_Azure_Function
 {
@@ -27,18 +29,25 @@ namespace _101_Azure_Function
 
             var peterKey = GetEnvironmentVariable("PETER_KEY");
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? $"This HTTP triggered function executed successfully. Pass a name in the query string. PETER_KEY = {peterKey}"
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+            var url = GetEnvironmentVariable("FILE_URL");
+            var client = new WebClient();
+            var str = client.DownloadString(url);
 
-            return new OkObjectResult(responseMessage);
+            var buffer = new StringBuilder();
+            buffer.Append(string.IsNullOrEmpty(name)
+                ? $"This HTTP triggered function executed successfully. Pass a name in the query string. PETER_KEY = {peterKey}"
+                : $"Hello, {name}. This HTTP triggered function executed successfully.");
+
+            buffer.Append("\n\n");
+            buffer.Append(str); 
+
+            return new OkObjectResult(buffer.ToString());
         }
 
 
         private static string GetEnvironmentVariable(string name)
         {
-            return name + ": " +
-                System.Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process);
+            return System.Environment.GetEnvironmentVariable(name, EnvironmentVariableTarget.Process);
         }
 
     }
