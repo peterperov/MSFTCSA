@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "101-Azure Function", "101-Azure Function\101-Azure Function.csproj", "{1B07A18F-83EB-4A94-92B4-241B6A670346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{A9E2B04D-C72B-4BB0-96EA-78DA4A19CD26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{A9E2B04D-C72B-4BB0-96EA-78DA4A19CD26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "103-Azure Function 5", "103-Azure Function 5\103-Azure Function 5.csproj", "{D01CDEA0-52EC-4CC2-B37E-9602FEF7D19E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A9E2B04D-C72B-4BB0-96EA-78DA4A19CD26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9E2B04D-C72B-4BB0-96EA-78DA4A19CD26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9E2B04D-C72B-4BB0-96EA-78DA4A19CD26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01CDEA0-52EC-4CC2-B37E-9602FEF7D19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01CDEA0-52EC-4CC2-B37E-9602FEF7D19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01CDEA0-52EC-4CC2-B37E-9602FEF7D19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01CDEA0-52EC-4CC2-B37E-9602FEF7D19E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
