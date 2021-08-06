@@ -30,13 +30,26 @@ namespace _101_Azure_Function
             var peterKey = GetEnvironmentVariable("PETER_KEY");
 
             var url = GetEnvironmentVariable("FILE_URL");
-            var client = new WebClient();
-            var str = client.DownloadString(url);
+            var str = ""; 
 
             var buffer = new StringBuilder();
-            buffer.Append(string.IsNullOrEmpty(name)
-                ? $"This HTTP triggered function executed successfully. Pass a name in the query string. PETER_KEY = {peterKey}"
-                : $"Hello, {name}. This HTTP triggered function executed successfully.");
+
+            if (!string.IsNullOrEmpty(url))
+            {
+
+                var client = new WebClient();
+                str = client.DownloadString(url);
+
+                
+                buffer.Append(string.IsNullOrEmpty(name)
+                    ? $"This HTTP triggered function executed successfully. Pass a name in the query string. PETER_KEY = {peterKey}"
+                    : $"Hello, {name}. This HTTP triggered function executed successfully.");
+            }
+            else
+            {
+                buffer.Append("FILE_URL was not specified in the app settings");
+            }
+
 
             buffer.Append("\n\n");
             buffer.Append(str); 
