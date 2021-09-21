@@ -1,10 +1,7 @@
-version: '3'
+version: '2'
 services:
   sqlserver1:
-    build: 
-      context: .
-      image: azure-sql-edge:latest
-      dockerfile: dockerfile
+    image: mcr.microsoft.com/azure-sql-edge:latest
     ports:  
       - "15789:1433"
     environment: 
