@@ -1,21 +1,6 @@
-#115-PowerBI-Embedded
-
-##Overview
-
-Testbed for the PowerBI embedded report in ASP.NET MVC app. 
-
-##Prerequsites
-
-* Azure AD tenant
-* Azure SQL DB integrated with Azure AD Tenant
 
 
-## Setting up 
-
-Add Azure AD users to the Azure SQL 
-
-
--- peterperov is an admin user 
+CREATE LOGIN [joe@myaad.onmicrosoft.com] FROM EXTERNAL PROVIDER GO
 
 CREATE USER [peterperov@chipsandfish.net] FROM EXTERNAL PROVIDER WITH DEFAULT_SCHEMA = dbo;
 
@@ -47,3 +32,8 @@ CREATE USER [user@chipsandfish.net] FROM EXTERNAL PROVIDER WITH DEFAULT_SCHEMA =
 -- Add user to the db_datareader role
 ALTER ROLE db_datareader ADD MEMBER [user@chipsandfish.net];
 
+-- powerbi@chipsandfish.net
+CREATE USER [powerbi@chipsandfish.net] FROM EXTERNAL PROVIDER WITH DEFAULT_SCHEMA = dbo;
+
+-- Add user to the db_datareader role
+ALTER ROLE db_datareader ADD MEMBER [powerbi@chipsandfish.net];
