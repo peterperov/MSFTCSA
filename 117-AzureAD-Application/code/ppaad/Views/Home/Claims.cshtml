@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "Claims";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h4>Claims Present in the Claims Identity:</h4>
+
+<table class="table-hover claim-table">
+    <tr>
+        <th class="claim-type claim-data claim-head">Claim Type</th>
+        <th class="claim-data claim-head">Claim Value</th>
+    </tr>
+
+    @foreach (var key in Model.Claims.Keys)
+    {
+        <tr>
+            <td class="claim-type claim-data">@key</td>
+            <td class="claim-data">@Model.Claims[key]</td>
+        </tr>
+    }
+</table>

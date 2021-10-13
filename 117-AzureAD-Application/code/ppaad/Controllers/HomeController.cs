@@ -89,5 +89,28 @@ namespace WebApp_OpenIDConnect_DotNet.Controllers
             return "";
         }
 
+
+        [Authorize]
+        public IActionResult Claims()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            var dic = new Dictionary<string, string>();
+
+            if (this.User != null)
+            {
+                foreach (var c in this.User.Claims)
+                {
+                    dic.Add(c.Type, c.Value);
+                }
+            }
+
+
+
+            return View(new ClaimModel() { Claims = dic });
+        }
+
+
+
     }
 }
