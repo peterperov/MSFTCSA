@@ -1,4 +1,5 @@
-# storage acc acccess key 
+# Azure Automation script that exports all Azure AD group membership to a blob storage in a format: 
+# YYYY-MM-DD\{groupname}.csv
 
 $connectionName = "AzureRunAsConnection" 
 
@@ -10,11 +11,13 @@ try
 
 	Connect-AzureAD -TenantId $servicePrincipalConnection.TenantId -ApplicationId $servicePrincipalConnection.ApplicationId -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
 
-#	Connect-AzAccount `
-#        -ServicePrincipal `
-#        -TenantId $servicePrincipalConnection.TenantId `
-#        -ApplicationId $servicePrincipalConnection.ApplicationId `
-#        -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
+	# Connect-AzAccount
+
+	Connect-AzAccount `
+        -ServicePrincipal `
+        -TenantId $servicePrincipalConnection.TenantId `
+        -ApplicationId $servicePrincipalConnection.ApplicationId `
+        -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint 
 
 }
 catch {
@@ -29,12 +32,22 @@ catch {
 }
 
 
-# Import-Module -Name AzureAD -Force
 
-# Import-Module 
+$storageAccount = "ppscriptstorage"
+$resourceGroup = "pp-rs-SAPVMTryout"
 
-$key = "..."
-$context = New-AzStorageContext -StorageAccountName "ppscriptstorage" -StorageAccountKey $key
+"key"
+$key = Get-AzStorageAccountKey -ResourceGroupName $resourceGroup -Name $storageAccount
+$key
+
+"context"
+$context = New-AzStorageContext -StorageAccountName $storageAccount -StorageAccountKey $key[1].value
+$context
+
+"storageacc"
+$storageacc =  Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name "ppscriptstorage"
+$storageacc
+
 $date = Get-Date -Format "yyyy-MM-dd"
 
 "Begin Read Groups"
@@ -63,5 +76,8 @@ foreach ( $group in $allgroups )
 	$blobfile = $date + "\" + $filename
 	$blobfile
 
-	Set-AzStorageBlobContent -Container "files" -Blob $blobfile -Context $context -File $filename
+	# Set-AzStorageBlobContent -Container "files" -Blob $blobfile -Context $context -File $filename
+
+	Set-AzStorageBlobContent -Container "files" -Blob $blobfile -Context $storageacc.Context -File $filename
 }
+
