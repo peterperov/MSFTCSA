@@ -1,4 +1,7 @@
 ﻿
+# git hub page
+# https://github.com/tfitzmac/resource-capabilities
+
 $filePath = "move-support-resources.csv"
 
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/tfitzmac/resource-capabilities/master/move-support-resources.csv" -OutFile $filePath
