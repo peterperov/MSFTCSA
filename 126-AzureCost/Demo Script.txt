@@ -1,0 +1,52 @@
+
+Demo 
+
+https://www.microsoftazuresponsorships.com/
+Make sure you login as your admin account, as only admin has access to the billing data.
+
+Click on Usage
+Download -> CSV Download (hidden)
+
+Start PowerBI Desktop 
+
+Get Data -> Excel 
+IMPORTANT -> Select Code Page - US-ASCII
+
+Data page 
+	Select Date Column, set Data Type as Date, You can change Date Format
+
+Details Report
+	Add Slicer, Field -> date, Top level dropdown -> Between 
+
+	Add Stacked Column Chart
+		X Axist -> Date (Untick Date Hierarchy)
+		Y Axis -> Cost
+
+	Add Table (left side)
+		Add Date, Service Name, Cost 
+
+	Add Table (right side)
+		Add Service Name, Region, ServiceType, Cost, Quantity 
+
+You can rename the fields by clicking Columns -> Column -> Rename for this visual
+
+Now you have nice Report. 
+
+Summary Report
+	
+	Add Slicer -> Year, Month 
+	Add Stacked Column Chart 
+		X -> Date (Untick Date Hierarchy)
+		Y -> Cost (Sum automatically selected)
+
+	Add Donut
+		Legend -> Service Name
+		Values -> Cost
+
+	Add Table 
+		Columns -> Service Name, Cost 
+
+Advanced Stuff
+
+File Source: 
+	Transform Data -> Queries -> First step is usually the source, where you can find name of the file 
