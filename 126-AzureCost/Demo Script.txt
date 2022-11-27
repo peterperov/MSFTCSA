@@ -1,4 +1,16 @@
 
+
+Tabs
+	peterperov@gmail.com
+	https://portal.azure.com/#home
+
+	https://www.microsoftazuresponsorships.com/
+
+	https://captainazure.sharepoint.com/
+
+	https://captainazure.sharepoint.com/sites/AzureCostLibrary/Shared%20Documents/Forms/AllItems.aspx
+
+
 Demo 
 
 https://www.microsoftazuresponsorships.com/
@@ -10,7 +22,7 @@ Download -> CSV Download (hidden)
 Start PowerBI Desktop 
 
 Get Data -> Excel 
-IMPORTANT -> Select Code Page - US-ASCII
+IMPORTANT ->  File Origin Dropdown ->  US-ASCII
 
 Data page 
 	Select Date Column, set Data Type as Date, You can change Date Format
@@ -30,7 +42,8 @@ Details Report
 
 You can rename the fields by clicking Columns -> Column -> Rename for this visual
 
-Now you have nice Report. 
+Now you have nice Report and let's rename it to "Details". 
+You can use slicer to narrow the date range and then drill through cost break down for more details.
 
 Summary Report
 	
@@ -46,7 +59,68 @@ Summary Report
 	Add Table 
 		Columns -> Service Name, Cost 
 
+
+File Source
+	PowerBI loads all the data from the original source into a little database engine inside PowerBI. 
+
 Advanced Stuff
 
 File Source: 
 	Transform Data -> Queries -> First step is usually the source, where you can find name of the file 
+
+
+
+So now let's make it a bit more fun. 
+
+In PowerBI you can use OneDrive (or sharepoint) as the data source. So in order to simplify the process of reloading the file let's do just that. 
+
+Let's go back to our website and download the consumption .csv again 
+This time we gonna copy it to the Sharepoint location, and check that it actually appears on the Sharepoint 
+
+https://captainazure.sharepoint.com/sites/AzureCostLibrary/Shared%20Documents/Forms/AllItems.aspx
+
+Let's copy paste the documents url we will need it later
+
+https://captainazure.sharepoint.com/sites/AzureCostLibrary/Shared%20Documents
+
+
+Then let's go back to our PowerBI report and make some changes
+
+Get Data -> Sharepoint Folder, (link without Shared Documents)
+
+https://captainazure.sharepoint.com/sites/AzureCostLibrary/
+
+
+Text Filter Begins With AzureUsage
+= Table.SelectRows(Source, each Text.StartsWith([Name], "AzureUsage"))
+
+"Date Modified" -> Date Time Filters is Latest
+
+In the File Origin Dropdown select: "20127: US-ASCII" !!!!
+
+Now a little trick = you can just change the source of AzureUsage to "SharepointDocs" and remove the extra steps
+
+Now, we will still gonna have to change the date parsing from US format to EU format
+
+Back to TransformData
+Date -> Split Column, By Delimeter "/", 
+
+"Add Column" -> Merge Columns -> Name: "Date", Separator "/"
+
+
+For the decimal separator you may need to add a similar transformation. 
+
+
+Now, let's upload it to PowerBI Service
+
+login to 
+https://app.powerbi.com/home
+
+And create a new workspace
+
+Back to Desktop, File-> Save, File Publish, pick created workspace
+Back to PowerBI workspace you can see that it created Report and a DataSet.
+
+In the DataSet Settings -> Data Source Credentials -> Edit Credentials: OAuth2 and Ogranisational
+
+You can also set daily refresh of the dataset, but I normally just manually click on refresh button.
