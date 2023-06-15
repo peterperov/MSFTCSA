@@ -1,0 +1,266 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Get_Synapse_state": {
+                "inputs": {
+                    "authentication": {
+                        "type": "ManagedServiceIdentity"
+                    },
+                    "method": "GET",
+                    "uri": "https://management.azure.com/subscriptions/@{variables('RestAPIVariables')['SubscriptionId']}/resourceGroups/@{variables('RestAPIVariables')['ResourceGroupName']}/providers/Microsoft.Synapse/workspaces/@{variables('RestAPIVariables')['workspaceName']}/sqlPools/@{variables('RestAPIVariables')['sqlPoolName']}?api-version=2019-06-01-preview"
+                },
+                "runAfter": {
+                    "Initialize_ActiveQueryCount_variable": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Http"
+            },
+            "Initialize_API_variables": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "RestAPIVariables",
+                            "type": "Object",
+                            "value": {
+                                "PauseTime": "01:00 PM",
+                                "ResourceGroupName": "pp-rs-Fabric101",
+                                "ScheduleTimeZone": "Eastern Standard Time",
+                                "SubscriptionId": "2fd2d39b-b2a1-4174-b80c-839540ed7340",
+                                "TenantId": "898202d7-d82b-41e1-9345-591f0901ad82",
+                                "sqlPoolName": "cntht65e6bjv4wd4pocws1p1",
+                                "workspaceName": "cntht65e6bjv4wd4pocws1"
+                            }
+                        }
+                    ]
+                },
+                "type": "InitializeVariable"
+            },
+            "Initialize_ActiveQueryCount_variable": {
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "ActiveQueryCount",
+                            "type": "Integer",
+                            "value": 1
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Initialize_API_variables": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "InitializeVariable"
+            },
+            "Parse_JSON": {
+                "inputs": {
+                    "content": "@body('Get_Synapse_state')",
+                    "schema": {
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "properties": {
+                                "properties": {
+                                    "collation": {
+                                        "type": "string"
+                                    },
+                                    "creationDate": {
+                                        "type": "string"
+                                    },
+                                    "maxSizeBytes": {
+                                        "type": "integer"
+                                    },
+                                    "provisioningState": {
+                                        "type": "string"
+                                    },
+                                    "restorePointInTime": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "sku": {
+                                "properties": {
+                                    "capacity": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "runAfter": {
+                    "Get_Synapse_state": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ParseJson"
+            },
+            "PauseSynapseIfOnline": {
+                "actions": {
+                    "Pause_SQL_Pool": {
+                        "inputs": {
+                            "authentication": {
+                                "type": "ManagedServiceIdentity"
+                            },
+                            "method": "POST",
+                            "uri": "https://management.azure.com/subscriptions/@{variables('RestAPIVariables')['SubscriptionId']}/resourceGroups/@{variables('RestAPIVariables')['ResourceGroupName']}/providers/Microsoft.Synapse/workspaces/@{variables('RestAPIVariables')['workspaceName']}/sqlPools/@{variables('RestAPIVariables')['sqlPoolName']}/pause?api-version=2019-06-01-preview"
+                        },
+                        "runAfter": {
+                            "Until_ZeroActiveQueries": [
+                                "Succeeded"
+                            ]
+                        },
+                        "type": "Http"
+                    },
+                    "Until_ZeroActiveQueries": {
+                        "actions": {
+                            "GetActiveQueryCount": {
+                                "inputs": {
+                                    "authentication": {
+                                        "type": "ManagedServiceIdentity"
+                                    },
+                                    "method": "GET",
+                                    "uri": "https://management.azure.com/subscriptions/@{variables('RestAPIVariables')['SubscriptionId']}/resourceGroups/@{variables('RestAPIVariables')['ResourceGroupName']}/providers/Microsoft.Synapse/workspaces/@{variables('RestAPIVariables')['WorkspaceName']}/sqlpools/@{variables('RestAPIVariables')['SQLPoolName']}/dataWarehouseUserActivities/current?api-version=2019-06-01-preview"
+                                },
+                                "type": "Http"
+                            },
+                            "Update_ActiveQueryCount_variable": {
+                                "inputs": {
+                                    "name": "ActiveQueryCount",
+                                    "value": "@body('GetActiveQueryCount')['properties']['activeQueriesCount']"
+                                },
+                                "runAfter": {
+                                    "GetActiveQueryCount": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "type": "SetVariable"
+                            },
+                            "Wait5minsIfActiveQuery": {
+                                "actions": {
+                                    "Wait_5mins": {
+                                        "inputs": {
+                                            "interval": {
+                                                "count": 5,
+                                                "unit": "Minute"
+                                            }
+                                        },
+                                        "type": "Wait"
+                                    }
+                                },
+                                "expression": {
+                                    "and": [
+                                        {
+                                            "greater": [
+                                                "@variables('ActiveQueryCount')",
+                                                0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "runAfter": {
+                                    "Update_ActiveQueryCount_variable": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "type": "If"
+                            }
+                        },
+                        "expression": "@equals(variables('ActiveQueryCount'), 0)",
+                        "limit": {
+                            "count": 3,
+                            "timeout": "PT3H"
+                        },
+                        "type": "Until"
+                    }
+                },
+                "expression": {
+                    "and": [
+                        {
+                            "equals": [
+                                "@body('Get_Synapse_state')['properties']['status']",
+                                "Online"
+                            ]
+                        }
+                    ]
+                },
+                "runAfter": {
+                    "Parse_JSON": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "If"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "triggers": {
+            "Recurrence": {
+                "evaluatedRecurrence": {
+                    "frequency": "Week",
+                    "interval": 1,
+                    "schedule": {
+                        "hours": [
+                            "17"
+                        ],
+                        "minutes": [
+                            0
+                        ],
+                        "weekDays": [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday"
+                        ]
+                    },
+                    "startTime": "2019-01-01T00:00:00Z",
+                    "timeZone": "Eastern Standard Time"
+                },
+                "recurrence": {
+                    "frequency": "Week",
+                    "interval": 1,
+                    "schedule": {
+                        "hours": [
+                            "17"
+                        ],
+                        "minutes": [
+                            0
+                        ],
+                        "weekDays": [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday"
+                        ]
+                    },
+                    "startTime": "2019-01-01T00:00:00Z",
+                    "timeZone": "Eastern Standard Time"
+                },
+                "type": "Recurrence"
+            }
+        }
+    },
+    "parameters": {}
+}
