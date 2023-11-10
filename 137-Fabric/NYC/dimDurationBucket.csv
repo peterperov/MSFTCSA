@@ -1,0 +1,10 @@
+durationBucket,durationBucketKey
+105 to 120 Mins,7
+90 to 105 Mins,6
+< 15 Minutes,0
+> 2 Hours,8
+60 to 75 Mins,4
+75 to 90 Mins,5
+30 to 45 Mins,2
+15 to 30 Mins,1
+45 to 60 Mins,3
