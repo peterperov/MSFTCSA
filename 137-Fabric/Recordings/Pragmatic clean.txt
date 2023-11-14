@@ -1,0 +1,832 @@
+
+hello YouTube friends from all over my name is Austin leibel and the pragmatic
+Works team and myself would like to extend the warmest welcome to you today to our learn with the nerd session on
+creating an end-to-end solution with Microsoft fabric so if you have stumbled upon this video
+and don't know much about the pragmatic Works team let me tell you a little bit about ourselves we are a training
+company and do training on various Microsoft analytic and automation tools
+including power bi power automate power apps t-sql Azure and now Microsoft
+fabric so we are exclusively a training company and we are diving into the realm
+of Microsoft Fabric and we are liking what we see inside of that so uh just to
+kind of get the chat going just to kind of get ourselves working towards the end to end solution today put in your chat
+your favorite type of fabric not not your favorite type of product experience in fabric not data engineering or data
+science but truly your favorite type of fabric I'm a flannel man myself when it isn't 100 degrees here in sunny
+Jacksonville Florida where I am dialing in from today uh but put your favorite Fabric in the chat and let's see if we
+have any good responses there now Microsoft fabric is currently in something called preview at Microsoft
+but the pragmatic Works team has decided that we want to go and be ahead of the
+curve and start covering many of the different Core Concepts and ideas around
+fabric so that when it does hit GA or general availability you and your
+organization are ready to go and you're going to be ahead of the curve as well working with the best off Microsoft has
+out to offer on the platform as it stands currently so what preview means
+as it stands today is that the features are being actively developed and may not be necessarily complete they are made
+available on a preview basis but you do have the ability to go and test and use
+many of these different features in production or test environments and scenarios and provide feedback to
+Microsoft on what you think so maybe something you're wanting to know is what is fabric how does it
+affect me uh Power bi developer how does it affect the users as a power bi
+administrator what's important uh is all that stuff we're going to cover today throughout this session so be on the
+lookout for that and many other videos that the pragmatic Works team is going to release after the course today to
+kind of spin off some of the content that we're going to talk about we've already have about four or five
+different fabric videos available on our YouTube as it stands right now that we might be linking in the chat as well
+when we kind of come to discussion around some topics to start off with let's just talk about what is fabric
+Microsoft fabric is an end-to-end analytics solution with full service
+capabilities including data movement data Lakes data engineering data integration data science real-time
+analytics and business intelligence and that's a mouthful there but it covers a lot so there's this big kind of cons
+concept of like well what is for me what should I be looking for what am I going to be most concerned about we're going
+to be looking at one end to in solution today and then we're just going to be kind of focusing on what the general
+business intelligence analyst developer someone who works with power bi already
+maybe someone who works with Excel files with the limited text files we want to focus on that person today there's many
+other product experiences or environments that we could go and work inside of but we're just going to really
+want to narrow down our Focus to the general power bi worker and developer today now what's great about fabric is
+this is all backed by a shared platform providing this robust data security governance and compliance which means
+that your organization no longer has to go through and piecemeal together and Stitch together the Fabrics of all these
+individual analytical services from multiple vendors instead they can use
+the Streamline Solution that's easy to connect with easy to on board with and
+also easy a to operate inside of now fabric is going to integrate many different Technologies Technologies like
+Azure data Factory Azure synapse analytics and power bi into this single
+unified product and maybe you're saying well Austin I've never touched data Factory before I've never looked at synapse analytics and that's okay but
+what's been made available to you and your team is the ability to work with some of the tools coming from those
+products from Microsoft and leverage them in your own fabric environment now
+this is really empowered data and business professionals alike to unlock really the potential of their data and
+lay the foundation for the era the upcoming era or the current ERA as we might already have seen of artificial
+intelligence now before we start diving deeper into fabric let's talk a little
+bit about some level setting for this event that we're going to have today now what I want to mention at the very
+beginning here is that this is going to be recorded on YouTube you're going to be able to go back and watch this in the
+future and it's also going to be on the pragmatic works on demand learning platform more on that later now if you
+would like to follow along with what I am going to be doing today as a part of our demonstration a little bit later you
+should see the class files in the chat and we pinned those to the top to make sure you can go and download those and
+have all of the different Excel and delimited text files that I'm going to be working with today throughout the
+demonstration now what I want to mention here don't forget to unzip them they are a zipped file you're going to maybe have
+issues if you don't unzip them so make sure you get those unzipped by right-clicking and extracting all another thing you're going to need today
+if you want to follow along and you may not have this but that's okay again this is recorded you can maybe follow along
+in the future with a re-watch of this but you're going to need something known as a fabric trial account or already
+have fabric enabled in your organization to follow along with the steps that I'm going to be doing inside of the power bi
+service so to follow along you might also have some permissions to create a variety of objects and workspaces so
+again if you can't follow along today see if you maybe can get access in the future and then watch this back and you'll have a a good kind of idea of
+what you can do with fabric now because we were on a time frame as well I am going to have to go at a moderate Pace
+today so if you get behind or if you miss a step I won't be able to repeat that necessarily but you will have the
+ability again to either pause and Rewind as you're watching live or come back and see this in the future as well I would
+also like to give a big shout out and if you in the chat can give a warm welcome to Brad schat who is a Microsoft
+principal program manager who's going to be helping out in the chat today answering a lot of the questions that
+you might have about fabric about Microsoft about what it takes to go through and leverage a fabric
+environment in your organization so extend a warm welcome to him and I want to thank him for joining us today now
+let's go let's get to it let's start talking about what's changed with the power bi service and how is fabric
+affecting that so the power bi service has changed and it may not have changed for you yet but it has the potential to
+change so long gone are the days of only having reports and visuals and
+dashboards in a workspace is going to allow us to go through and have many other different types of
+objects available to us in a fabric enabled workspace now fabric again is
+currently in preview so it is you know available on a preview basis but there are many different product experiences
+that are available to you when you enable Fabric in your organization and
+you can see many of them on my screen right here you of course have power bi but you also have data Factory and
+synapse analytics provides many different analytical tools as well in the realm of data engineering data
+science real-time analytics data warehousing all of those are available to you in the product experience which
+we're going to look at a little bit later when we get to our first demo now what also has been added to the power bi
+service is this one Lake data Hub and we're going to cover one lakes and lake houses a little bit later on as well but
+we have all these new things here and how is this affecting us as a general power bi developer hey I know how to go
+through I know how to make awesome reports in my power bi desktop tool I know how to publish those to the service
+I can interact with them in the service share them throughout my organization provide a dashboard for a high level
+executive but what has now been allowed to me uh with fabric what has changed that's what we really want to cover and
+focus our our time on today now once an organization decides to enable fabric
+they now have this wide range of tools available to them in the power bi
+service so you have this uh Power bi service that lots of different users companies around the world are already
+leveraging so it's giving you some familiarity with how that works and how you interact with that but you're
+getting tools from Azure like Azure synapse analytics data factory data
+bricks Azure machine learning stream analytics there's lots of different Azure resources out there and instead of
+having them all in disparate systems that kind of have trouble communicating to each other from time to time we're
+going to tie all these into one one really easy to use workspace and allow for different people from different
+backgrounds but all with data backgrounds to work together collaboratively so hopefully we're going
+to break down these topics give you a little bit of an insight to each one what's available in each one and then we're going to get to a demo in just a
+few minutes so in fabric there are different what we call product experiences now one of them is power bi
+and this is essentially the traditional power bi service this is going to be integrated with other pieces of fabric
+to ensure that you have access to data in fabric with relative ease now we also
+have one of the big ones data engineering so inside of data engineering we're going to have things
+like a lake house now you're saying Austin I hear people talking about lake houses what's a lake house like I
+imagine a house on a lake it's a little bit different than that but we're going to have a little bit more of an in-depth
+discussion around lake houses and one Lake in a little bit as well so we have lake houses a part of data engineering
+but we also have something known as a pipeline a pipeline is a graphical user interface to move and transform data and
+this comes from data Factory pipelines or synapse analytics pipelines you're going to find a lot of similarities
+between some of these different product experiences But ultimately you can say hey you know what I mostly deal with
+data engineering I use maybe like a notebook in data engineering which is another tool you can use there a spark
+notebook and use code to move and transform data or you can go back and if you don't know those code languages like
+python or R maybe you want to use and move a uh data with a pipeline
+potentially so lots of different options available in that now I mentioned
+something called spark and we're going to keep coming back to spark today as well as a a tool that we can potentially
+leverage in the fabric workspace but think of spark as this very powerful
+engine that enables you to process vast amounts of data I'm talking about
+terabytes potentially petabytes of data efficiently so it allows you to write
+programs or queries that can run on this network of computers or we call it like
+a cluster that exists in the cloud but this does not mean that you only have to use that to work with big data right you
+can still use pipelines but that's going to be one of the optimal tools you could potentially work with now there's some
+other product experiences as well there's going to be a lot of overlap with some of these also so in data
+Factory we also have pipelines right we have pipelines in data engineering and data Factory are they different no same
+place same concept between the two they're just a shared resource depending on your background maybe you've worked
+in data Factory a lot but you haven't really migrated over synapse and that's okay you're going to have a very similar
+product experience there that you can work with what we also have in data Factory which is absolutely phenomenal
+for the general power bi developer is something known as data flows gen two
+data flows Gen 2 give you the ability and ease of use of the power query
+editor coming from the power bi desktop tool to go and move and transform data
+as well you can take data you can transform it with the general kind of power query look and feel which I know a
+lot of users absolutely love and you can go in and load data to a destination
+through that as well which is a awesome feature that has come along with the fabric capability also now we also have
+a couple more that we're not going to maybe dive into as deeply today but look for more content in the future on those uh we have data science and data science
+really is a a science project uh process that allows you to identify different
+patterns and generate different insights on large amounts of data and primarily what fabric is concerned with around
+data science is the different types of machine learning models we have classification regression forecasting to
+do data science and fabric you're going to be working inside of a notebook with spark just like that spark notebook
+coming from data engineering so again a lot of different people using different Technologies for different purposes but
+all doing it in one integrated workspace now we also have the synapse data warehouse which is your traditional data
+warehouse you can access with SQL to store tables and build out a star schema model the fabric data warehouse is still
+centralized on something called the one Lake but everything is on one leg in Fabric
+and can be integrated into one Lake there's something called a connection if you have data potentially outside of
+your fabric environment it's essentially a way to go through and connect with an external Source like a data Lake that
+you already have in your organization that you don't want to migrate over maybe to your one link we also have real-time analytics and this is all
+about the continuous flow of real-time information about streaming data for things like inventory management ride
+sharing apps credit card fraud detection things of that nature so fabric really presents an opportunity
+your entire analytics team into one service and work with one source of data
+now speaking of sources of data there's something I mentioned several times today and we are going to need to cover
+it pretty at least at a high level because it is the key to working inside of fabric and that is going to be one
+Lake now one link is something that was a managed data Lake in a data lake is
+this storage account that stores different types of data and think of the the one Lake and Microsoft has kind of
+had this comparison as well as a OneDrive which you're hopefully familiar with for your data now for fabric there
+are specific data types that we're going to be specifically working with specific file formats if you will uh we're going
+to be working with parquet and CSV files The Limited text files and also Delta
+files as well more on Delta files later so it has this managed data Lake now a
+data Lake again for storing large amounts of data what does managed mean though managed means that we as
+consumers maybe don't have as much ability to manage the product it's managed by Microsoft so all of fabric is
+what we know as a SAS product or a software as a service product that allows users to connect to and use
+cloud-based apps over the internet and connect with this think of SAS products
+like email calendar applications office tools like Microsoft Office 365. the
+idea of one link is to provide the single SAS experience and a tenant-wide
+storage layer for data for both professional and citizen developers so
+how do I actually access one like what is one like so you can either access one link through something known as a lake
+house or potentially a warehouse now we're going to focus on the lake house today because it is the foundation of
+Microsoft fabric which is really built on top of this one Lake scalable storage
+layer and uses different tools like spark like SQL compute engines for big
+data processing now a lake house is a unified platform that combines the flexible and scalable storage of a data
+lake so think you're you're storing different files in your OneDrive for data on your data Lake and it also
+contains the ability to query and analyze data of like a data warehouse
+but it combines these two principles together you store data on a data Lake you have the ability to query it you
+have the potential to have different table structures on that lake house and you can go and work just like you would
+potentially with your traditional data warehouse there now you can go and you can have different types of data coming
+into that and we can kind of get into some of those uh types of data that we're going to work with but primarily you can load different things to a lake
+house we can go through and load in a file if we want we can load in a CSV
+file or an Excel file and we can work with that in our entire organization assuming they have the permissions of
+course can potentially go and leverage and work with that file but we're going to go through an example today that says
+hey we got this file that came into our lake house how do I go and how do I build a a actual lake house that I can
+go through and query and build tables on that lake house how do I do that as a developer working with Excel files with
+multiple sheets but after you create a lake house you can load data in a variety of different ways you can load
+data with a pipeline we talked about earlier you can load data with a spark notebook you can load data with a data
+flow so we can pull data from all these different sources depending on your preferred tool of choice
+now overview key takeaway and then we're going to jump into our first demo so fabric is a One-Stop shop for analytics
+uh visualization storage sharing integration all built into one platform fabric is available in currently power
+bi premium workspaces but it's eventually going to have its own fabric SKU that is out on the market now that
+you could potentially go and purchase pragmatic Works has a video on how to go through and set up that in your
+environment as well as some of the information around cost and billing around fabric skus one lake is a
+scalable storage account for organizational data that eliminates needs to move and copy data from across
+multiple systems and a lake house is a warehouse that has the storage layer of
+one Lake which is your data Lake all right if you're wanting to follow along with me today we're gonna head over to
+the power bi service and create our own end-to-end solution inside of fabric now
+if you have not logged into the power bi service feel free to go through and do that now I'm going to look at one of our
+questions in the chat here Azure data Lake versus Microsoft one like Mario
+asked do we need both or one like replace data Lake absolutely so uh you
+do have the ability to work with both inside of fabric you're going to have your one Lake that's kind of natively
+integrated into your fabric environment but you can also do something called a connection to an external data Lake that
+you already manage and you can go and grab all that data there and work with that in the fabric environment as well
+now do you need both you could potentially have both but if you don't want to migrate over to one lake or you
+think it might be a little bit more of a hassle to start with and you just want to start with that connection that is a perfectly fine solution for you to go
+through until you start working more with the one Lake and seeing how easy it is to use I think you're going to find
+that you want to migrate over eventually but you do have the ability to use both uh and if you want to wait on the one
+leg until you start migrating that over that would be a perfectly fine solution
+um write back data to one like yes absolutely we're going to write data to one like in uh just a few moments here
+we're going to upload a file to our one like and then we're going to go through and we're going to take that file and
+extract some information out of there with a data flow so I'm going to go through and I'm going to start our demonstration here we are in the power
+bi service now again if you are wanting to follow along you are going to need something known as a fabric trial uh
+account at the very minimum that enabled in your organization to work with fabric you will know if you have a fabric
+account enabled because you will see some new things at the bottom including this button right here that says power
+bi and when I click on that I have a couple different options here I can go through and look at I can go through and
+look at okay awesome sorry to interrupt we're not seeing yeah we're not seeing that okay we'll do let me um
+change that around appreciate you Devin there
+and let's go over to my entire screen awesome okay now we're in there thanks
+we're good to go awesome so we are in the power bi service now appreciate Devin for putting that out and not
+having me share too long um so where you have now the ability to go inside of the power bi service and
+look through some of your different uh options to see if you have fabric enabled would be down here at the bottom
+underneath the power bi option so if I click on this it gives me an option to go and look at all the different product
+experiences available to me inside of fabric now I can also click up here to
+the Microsoft Fabric and that just kind of gives me an overview where it can take me to some documentation about some
+of these different product experiences so we're going to kind of deal mostly today with power bi data Factory in data
+engineering but you have others available there and you can do some reading on that if you would like now
+I'm going to go back over to my power bi setup right here so if you're one of the phone how long where we're going to go
+is we're going to create a workspace inside of the power bi service that has fabric enabled so I'm going to click on
+side of my workspaces right here on the left hand side of my screen and I'm going to go to the bottom of that and
+say I want to create a new workspace so I'm going to click that button there this is going to open a fly out on the
+right hand side of my Pane and I'm going to call this workspace learn with the Nerds lwtn just to kind of give us a
+basic name for this workspace here now when you go through and create a workspace if you go under the advanced
+options you're going to see some different license modes available to you you can create a pro premium but we have
+this trial one as well available to us if you have the trial enabled that you can go through and try out all the
+different fabric experiences so that's what we're going to want to select make sure you have done that for yourself go
+ahead and say apply this is going to take just a moment to create our workspace for us and now we can go
+through and work with fabric inside of here and store all of our objects we're going to create here as well now what
+we're going to do is click on this new button and say Hey you know I have the ability to work in this workspace just
+like any of the other ones right I have the ability to upload a file I can go and create a report I can create a
+dashboard from here right this is interactable with just like a traditional power bi workspace NOW Watch
+What Happens though if I change my product experience that is inside of
+this workspace here so if I go through and say you know what I'm not actually interested in working in power bi for this workspace I want to go in click on
+that right hand the bottom left screen there and say I want to click on my data engineering and now I have a lot of new
+features available to me here I don't maybe have the ability to go through and work with some of those power bi
+features but I can go back to that if I just change my product experience for the workspace so as we click through
+these different ones we're going to see different things that we can go through and create I'll like house a notebook a
+data pipeline now where are we going to go first is we are going to go and we're going to create our own lake house in
+this workspace so I'm going to click directly on the lake house preview button and let's give this a name now if
+you've already peaked at your files you're going to know that we're working with the adventure Works sample data set that we can have as a bicycle uh company
+we're going to go and look at some different sales information some product information so we're going to create a lake house called Adventure works I'm
+going to go through here and just call this adventure works one word just like so once I have that spelled out for
+myself I'm going to go ahead and say I want to create this lake house now this will take just a few moments for this to
+create I'll see if we have any questions in the chat really quickly while this is loading here for everyone Anil says will
+Microsoft fabric replace synapse analytics so um no not not replace altogether they're
+not going to do away with synapse analytics we're we're not losing synapse uh as of right now uh we're still going
+to have the ability to have production workloads there are a lot of companies who have already utilized that for
+themselves and it's not going to you know force you to migrate over immediately Microsoft has claimed that
+there will be migration paths from synapse to fabric eventually available
+uh but for now there is the ability to work in both now what I will say is
+fabric is going to be the uh first thing that typically gets product updates as
+you see things change you're going to see most of that time dedicated as a fabric first as we are calling it uh
+environment so they're going to update Fabric and maybe they'll have synapse updates as well over time but it won't
+be as frequent so the newest and the best and most readily and easily uh to
+use updates are all going to be coming to fabric so ultimately I think that is going to be something that you've been maybe you should consider looking into
+seriously because it is going to be where we're spending most of our time as we move along now we are inside of our
+lake house so this is a lake house and from here we can go in and load the lake
+house through a variety of different tools I can use power query with this
+data flow gin too so this would maybe hey I'm a power bi developer who wants
+to use power query to be able to load this right I have a very similar experience to what I've worked with in
+the past we have data pipelines as well this is like data Factory or synapse
+analytics pipelines a very similar kind of user interface there if you worked with that before we also have notebooks
+and these are going to be spark notebooks similar to if you worked with synapse notebooks and synapse analytics
+or notebooks inside of databricks as well a very similar atmosphere and
+looking feel to that so we have different ways that we can pretend essentially load a lake house but we're
+going to do that through a data flow before we can actually do that though let's give ourselves some data that we
+can connect to inside of our data flow so I'm going to go here and click on my
+files and these have all of the files that we can upload directly to our lake house now this does not mean that it is
+in the proper form or it's a table you notice there are tables and files here but you can have both inside of one lake
+house environment it's going to use your one Lake to do so now if I click on this Ellipsis here and I would have you do
+this as well if you want to follow along we're going to go to the upload button and then click on your upload files so
+upload and upload files underneath that it will open up a pane on the right hand side of your screen or you can click
+that nice browse icon and find your class files that you have downloaded and through the chat now if you click in
+there and once you've extracted that you're going to see really two different files that we're going to work with primarily today the adventure Works Data
+Warehouse Excel file with multiple sheets and there's also going to be a delimited text or a CSV file available
+to us there as well so we're going to select the adventureworks DW to start with go ahead and open that up and then
+once that is in your path there go ahead and upload that to your lake house to the one link and then we're going to
+access that in a little bit through a data flow let's let that load for a second there
+um Camille says if our data is small and we don't really need synapse is this too powerful for us not at all I I think
+that there's going to be the ability for people working with smaller size data and of course large data scale as well
+to work in this environment you can go through and enable a fabric SKU that doesn't have a large compute
+infrastructure dedicated to it and you can still go through and use all these
+different tools for your data processes for moving your data for transforming your data for analyzing your data so
+depending on your situation right it's going to depend hey am I just working with Excel only or am I going to
+potentially want to leverage SQL against Excel files which we're going to do in just a moment for ourselves now that's
+going to depend on specifically your scenarios there but I would say that fabric is really meant for everyone regardless of the scale of your data all
+right so this file has now uploaded into our lake house which is awesome I can
+see that there is a file available to me underneath my files here if I click on my tables there's nothing there yet
+we're going to create a table right now so where we want to go next is we are
+going to go in and choose the get data button this should be an extremely familiar UI to anyone working with the
+power bi desktop tool before you know how to go and get data and you have different options here for what where
+you can get data from right maybe not as many as the power bi desktop but we can go through and we can use different
+tools to load data into this lake house now what we're going to choose for
+ourselves is new data flow gen 2. I want to give again people who have experience
+with the power bi desktop tool the ability to go and work with the power query editor essentially inside of
+fabric and they can see how easy it is to go through and connect with their data now I'm going to tell you luckily
+this data is pretty nice pretty cleaned up there's not going to be a lot of steps for us to go through to clean this
+data up which is awesome for this short abbreviated class that we have I wish we had three five hours in this class we
+could really spend some time getting deep into it but uh we're going to already have data for the most part cleaned up and ready to go as a part of
+this all right so my power query has loaded from here where I'm going to go is I'm
+going to choose git data again now get data here we have some different options that we can actually get data from how
+do I want to go and access data Maybe it's formin Excel workbook in the power bi service maybe it's from another data
+flow maybe it's a query you create to a Azure SQL database or a SQL server on premises we're going to choose the more
+option here and we're going to see all the different ways that we can potentially connect with data but the
+one we're going to use for ourselves today is we're going to take advantage of the lake house right we already have
+loaded data into the lake house in our one Lake right we can go and access that file and we can convert that Excel file
+to tables in our lake house with a little bit of uh steps to do it right so
+I'm going to click my lake house as my source here when I do that it's going to
+give me an option to click my lake house none available to me or right now we don't have a connection maybe to the
+lake house this is going to help us create one this user interface here you're going to see is very intuitive
+has nice easy steps to follow through hey you need data from here you want your data to go there it's pretty
+intuitive for working inside of this tool so I'm going to say next for this I'm going to go through and choose my
+lake house let this connect to our data source you're going to see I have a lot of different Power bi workspaces here
+some of them might have lake houses inside of them some of them may not but I can see the list of the workspaces
+that I have access to the one that we just created is the learn with the Nerds
+so I'm going to open up my lwtn and I have this adventure Works
+lake house that I can go through and connect with now I have another one here called data flow staging lake house one
+I'll talk a little bit more about that in a little bit but we'll get to that when we when we get to that so I'm going to go through and open up my adventure
+Works lake house and what should be in inside of that if I click on the files here and open that up I gotta kind of go
+three or four levels deep into this so learn with the Nerds Adventure Works under my files there we are going to
+find this adventureworks DW file that we uploaded just a few moments ago so what
+we're doing here is we are making a connection to this file that exists in
+our one Lake onelake.dfs dot fabric.microsoft.com that's like the the path to where our
+file exists in Microsoft's Cloud but all we really need to be concerned with is that we have the ability to connect to
+that and we can go and create that connection as so just by clicking on the create button now while that's loading
+here for a moment I'm going to go through and see if I can open up my learn with the Nerds it's not going to
+let me do that right there it's okay because we already are loading this in there that's okay so this is going to
+load in the into our power query editor our our file that we just worked with so
+inside of this file right we have a bunch of different worksheets that we can use as part of this Excel book so we
+have fact internet sales we have dim product we have dim category sales territory right we have a lot of different ones there we're really only
+going to be concerned about two today as a part of this data flow we could potentially extract every single one but
+just to kind of move forward and get to the next piece of the puzzle we're just going to be working with one so what I
+would like you to do here is I'm going to go through and right click on this query my first query here I'm going to
+copy this out and then I'm going to paste it now if you try and paste uh with a right click here it's going to
+say hey that's not going to work so you might have to paste it with Ctrl V so we're just going to duplicate this query
+to create two different uh ways that we can load our our data lake house into
+tables there so we have our first one here and our second one there uh it doesn't matter which one you go to to
+start with but I'm going to go back to my first one here and I want to go through and I want to create a map
+ticket to this this fact internet sales file right to this worksheet in my Excel
+file so what I'm going to say here is I want to go to the table go to the underlying data of fact internet sales
+and you'll notice over on my query settings on my applied steps that I've gone through and applied some different
+steps to this query now ultimately this is going to go through and load exactly
+the data that we want to work with into our lake house as we go along so this is
+already set we don't need to do any cleansing here potentially though you could do some cleansing you could go
+through and clean this up a little bit if you wanted to so when we go through and look at this we can say hey okay
+there's a bunch of columns here let's clean this up but for now we're good to go now what I will point out at the very
+bottom here is our data destination let's see if I can zoom down in on this a little bit so our data destination has
+already been loaded because we said that we wanted to populate this lake house with a power query data flow so we've
+gone through and it already has determined this for us but if I want to specify the lake house that I'm creating this to or where this data is going to
+flow from and go to I can click on my settings option here and that's going to open up my data destination so um user
+interface so when I want to go through and say hey where am I loading this data to what's this data going to look like where is it going to end up I can use
+the same kind of user interface and again it's pretty intuitive to work with so we're going to go through and say on
+our connection credentials we are going to load to our lake house let's go ahead and just say next for this
+we are going to go in and choose what lake house we want this to go to so
+we're going to open up our learn with the Nerds lake house and then we're going to go through and say we want to
+create this to the adventure Works lake house now what is our table name going to be called we might want to go through
+and change that up a little bit uh this is going to be the fact internet sales
+table fact internet sales so a new table will be created in the adventure Works
+date a lake house when we do this so we'll say next
+let that run for a moment here we want to make sure all of our data types are matching up everything looks good to go
+for this one it's all set so we can actually just say from here we want to save down our settings
+and then once this saves we can go and modify our other query as well now if
+you want to help yourself and not get confused between which one is which I'm going to rename my first query over here
+to uh fact internet sales this is going to be our fact table if we are building
+out our traditional star schema and then the other one here is going to be for
+our dim product so we're going to go through also and rename our second query
+to dim product where we have a list of products that we sell as this fake
+bicycle company uh so from here we're going to pretty much do the same steps we're going to go through and we're
+going to choose the dim product table that's going to go and load that sheet
+from our Excel workbook into the query here it's going to have the ability to
+of course go and clean that up from there as well but for the most part everything's going to be good to go now
+we're going to just from at this point right here once we have loaded in the dim product table or workbook that we're
+working with we're going to say where we want the data to go also so we're going to choose the settings again for the
+lake house go ahead and say next for that and then we're going to have to
+pick where we want to load this so again it's going to be in our learn with the Nerds folder there into the adventure
+Works lake house now it already knows our table name because we change that query over here it kind of took whatever
+and the name of our query was and that's going to be the name of the table we
+create in the lake house so from here we can just say next now from here we do have a few things
+that might be giving us some issues so you'll notice here that there are a couple of different data sources that
+are maybe going to have an issue some Source types that aren't going to translate necessarily so we can either
+just leave them out of our mapping if we don't need them in our in our lake house table that we're creating or we can
+specify what we want to change that to so product subcategory key that's going
+to just be a whole number standard cost we can change that over to a currency
+list price as well would be a currency dealer price a currency now large photo
+maybe I don't need a photo of the product in my lake house and I could maybe be useful but maybe there's
+something else we work with that so we'll just leave large photo out and then for end date at the very bottom
+we're going to change that to a date data type now so just to recap what we
+did there the first one that was blank was a whole number the next one we went through and we just did a couple of
+different currencies and the final one at the very bottom for end date was date so I'm going to go ahead and save my
+settings with that as well that's going to go through map everything to our lake
+house with this second query in the data flow Gen 2 and then after this we're
+able to go and publish this out and have this run and execute and this is going
+to take that data from the Excel workbook in our lake house the one that we uploaded manually as just a DOT Excel
+file right it's going to take that data and it's going to move that into our lake house
+underneath the table so that we can go and use the true lake house capabilities and start actually querying some of
+those tables there for ourselves so from here I'm going to go ahead and say everything is good to go everything is
+done we're just going to publish this out and let this run for a few moments
+now a couple things to talk about here while this is running this is running here we can see where it says publishing
+in progress it has these little kind of swirly dots going around that look pretty cool but a couple things here
+right we've really only gone through and created for what we know maybe two objects right but there's a lot of extra
+stuff here so what in the world is all of these other things what is all this stuff well let's start with the main
+three up here so we have all these Adventure Works things that are titled the same exact thing but if you notice
+here they are different types so we have the lake house that's what we created right that's what should be able to work
+with right why do we have this other stuff though we also have a part of our lake house the SQL endpoint as well as a
+data set so essentially what are these things the SQL endpoint gives you the ability to go and actually write SQL
+against the tables in your lake house and I'm going to show you what that looks like in just a moment here but if
+we only had a lake house we would still need some sort of compute infrastructure some way to go and actually access the
+files there and process them and read from them and that's going to be in our SQL endpoint I'll show you how to
+navigate there in just a moment the other thing is going to be our data set now data set should be pretty familiar
+to you right what's a data set well that's the ability to go and access a uh
+a data set in like the power bi service or excuse me in the in the desktop tool right we can go and we can obtain access
+to a data set that gets loaded into the desktop tool we can either connect to
+the lake house in the power bi desktop directly or we can connect to the data set we have a couple different options
+for how we have the ability to do that we're going to explore that at the very end of today as well now this data flow
+is still loading but the other things at the bottom here what is this right why do we have all this data flows staging
+warehouse now what I'll tell you about this is this is something that ultimately may not always be on your
+screen once you go through an author a data flow there's a few things remember this is in preview that are maybe not
+going to be necessarily viewable by the end user like all these different staging warehouses and lake houses this
+is essentially what's happening behind the scenes that's giving us the ability to go through and and create data in our
+lake house with a data flow so we see this now when this hits GA this will probably be something that we don't
+necessarily see for ourselves as a general user as a part of this
+now while this data flow still loads I'm going to go ahead and go into my lake house by clicking on the adventure Works
+lake house you'll notice you have a nice little image here with a house with a little water next to it kind of
+symbolizing the lake house but I'm going to go over into my lake house we see that original file that we created there
+we don't see any tables yet we can go through though and do a refresh it's not going to show up just yet what we can go
+over and look at though is this over on the right hand side of the screen at the very top So currently we are looking in
+our lake house right we are looking at the files or the tables that exist here but what happens if we want to go and
+actually query this where do we go to do that well that's going to be from this option right up here instead of working
+in the lake house we're going to migrate over to the SQL endpoint of the lake
+house to be able to work with the tables there that we can write SQL against so
+by clicking that drop down option I can go over to the SQL endpoint and gain access to the tables once they have been
+loaded there now we go through and see that there's Adventure work we have the schema dbo
+we have tables let's see if they've been loaded yet they're still kind of waiting on that data flow it's still running in
+the background for us so while we're waiting for that to load I think this would be a good time to go through and
+share with you something about the pragmatic works that I want you to know uh so pragmatic Works has something
+called our uh season pass our our pragmatic Works season pass for gaining
+access to essentially almost all of the content that pragmatic Works provides as a training company so this would give
+you full access to our on-demand learning platform and our on-demand learning platform is a place where we
+have many different videos for different topics on Microsoft products things like
+Microsoft power bi things like uh power apps power automate Azure synapse
+analytics is on there data Factory is on there right we've been heavily invested in these tools for some time SQL is on
+there as well so if you want to go through and learn at your own pace with some instructor-led demonstrations and
+videos that is an awesome resource for you now you have the ability to just sign up only for the on-demand learning
+platform but when you sign up as a part of our season learning pass you also gain access to a lot of other benefits
+as well including the ability to go and join any of our instructor LED live
+taught um virtually live talk when I'll specify there uh boot camps on a variety of
+topics I am actually teaching a boot camp next week on SQL so if you're interested in learning SQL you can join
+me in that boot camp as a part of either this learning fast or you could sign up for it individually but this is going to
+be one of the best deals you can get for potentially if you want to go through and learn about a lot of different topics you want to learn about power bi
+you want to learn more about Dax in power bi you want to learn power apps power automate Azure synapse analytics
+data Factory again we have a lot of different training content on all those different Microsoft products available
+as live teachings as well which is the way people like to learn a lot of times I want to go through and have someone
+walk me through this help me along if I run into issues great tool to do that now one other thing you get as a part of
+the Season learning pass is a three hour Bank of virtual mentoring sessions that
+you get to go one-on-one with a trainer from the pragmatic Works team that specializes in whatever content that you
+are looking for around Microsoft whether it be working with Dax in power bi paginated reports Azure power apps power
+automate whatever issue you're having currently we're able to come alongside you
+help try to solve that issue with you we wanted to guide you through and use our
+expertise in those different tools to help you figure out whatever the issue is and hopefully get it working for you
+now you can schedule those in either as little as like a 30 minute session or up to a two hour session at one time with a
+one-on-one mentoring uh again leading that kind of product now one also thing
+you get this is a brand new thing this is I think worth the price alone of signing up for our season learning pass
+but it is our coveted learn with the Nerds uh pack right you get a lot of
+different uh Tools in here you got a shirt you get some stickers you get some
+really cool stuff sent to you to you can rep the pragmatic Works team say hey I learned with the Nerds today I'm your
+resident nerd here I guess today uh but you can go through and get that as well which is a pretty awesome tool I think
+so definitely look at signing up for that if you are interested interested in learning about any of these products or
+potentially a Microsoft fabric boot camp in the future as well we don't have that lined up yet but we're working hard in
+the background to get that ready to go by the end of 2023 but if you want to learn more about fabric today we have an
+introduction to fabric on the on-demand learning platform as well now let's head back over to our our uh
+environment over here oh we have some data uh it took a little bit longer I thought it might today but it's it's
+there for us now so we're ready to go and start working with this
+um so what we're gonna do here is we're gonna say okay I can go through and I can actually look at this file right I
+can go back over to my lake house by clicking on the kind of uh Navigator over there and I can actually see these
+different tables in my lake house now now what I'll point out is this little triangle symbol here there's a little
+triangle symbol there and that is specifying that this is something known as a Delta table now you may have heard
+of the Delta Lake before but I want to talk about it again at a pretty high level just for a moment because it is
+one of the things that really makes fabric work uh so with Delta Lake you can essentially store data in these
+versioned parquet files now parquet file might be a New Concept to you as well but think of like a delimited text file
+you have all these different columns you have all your different rows you compress that upright and it takes up x
+amount of storage well with a parquet file instead of compressing that by the rows you can press it by The Columns and
+that actually saves quite a large footprint on storage inside of a data
+lake or inside of your one leg so instead of having to store as much data on the one Lake you can compress that by
+this by this process using spark using pipelines using different Tools in Fabric and what Delta Lake does is it
+takes those parquet files and allows for creating um reading updating deleting operations
+crud operations as I like to call that create read update delete but when you
+go through and use those different operations Delta Lake extends parquet
+data files with a file based transaction log in Json so essentially what you get
+is an acid transaction inside of a lake house something that's been missing from
+the data Lake for quite some time a long time ago a couple of three years ago not centuries ago right but a couple three
+years ago uh you had people storing data in data Lakes at massive quantities and just got so jumbled and mixed up it
+became more of a data swamp as we like to call it so what Delta Lake does is it fixes the data swamp and allows you to
+retain acid transactions typical to your database properties to your data warehouse properties with files on your
+data link so this is a really awesome capability that is inside a fabric that is native to fabric
+you notice there that my actual tables have that Delta symbol there Delta
+tables are going to be the core infrastructure of how you can actually work with a lake house inside of fabric
+now there's a couple other cool things to this one I always like to talk about time travel just because it sounds awesome my favorite movie is
+Interstellar has some time travel kind of concepts with that so I like time travel but time travel is a really cool
+uh benefit to Delta Lake as well when you're working with like a spark notebook you can go through and actually
+look at previous versions of your Delta table over time and look at the Historical version and potentially use
+this in data analysis and data auditing principles and also used for data
+recovery as well um yeah so let's go back over to fabric let's actually look at a couple of these
+things Caleb asks a great question to chat is there get integration with fabric yes there is if I were to go over
+to my learn with the Nerds workspace and look look at the workspace settings you will notice that git integration is
+something that has been implemented here if you don't know haven't heard there's
+also the ability to have a um co-repository and a environment in power
+bi desktop files as well which is a pretty new thing not necessarily a part of fabric but something that's also been
+rolling out here pretty recently alongside a fabric so some pretty cool stuff alongside of that as well all
+right where we want to go whether you're in the lake house whether you're in the SQL endpoint I'm going to go to the SQL
+endpoint but if you are in the lake house all you need to do is go over to that and click on that to migrate back
+and forth between them so we have these different tables here we can view these tables inside of our lake house what we
+can also do is write a query against these tables as well so we're going to
+use SQL to do that and you're thinking I don't know SQL right well hey join my boot camp next week I want to get as
+many people in there as possible because we uh I love teaching SQL it's one of the uh my favorite things to do just
+made a lot of new classes for the on-demand learning platform as well on SQL but I'm going to come here and I'm
+going to help you author a SQL query really quickly and kind of walk you through what it's doing so I'm going to click on the new SQL query button this
+is going to allow me to go through and author a SQL query using structured query language T SQL Microsoft's
+tranzact SQL variant language of SQL so what I'm going to do here is I'm going
+to say I want to select and then I'm actually going to hit my uh enter button there uh and click on the from as well
+so I like the right SQL maybe a little bit differently than you do hey everyone kind of has their own uh use cases for
+how this works but I'm going to go through and specify what tables I want to work with first and what tables I want to join to and then I'll come back
+and populate my select statement which is going to choose the columns I want to see as well so I'm going to go through
+and I'm going to select from my fact internet sales table now you see here that with intellisense this is made a
+lot easier as well I can just hit the tab button there and it populates fact internet sales for me which is awesome
+now I'm going to Alias this table because I am going to be doing a join with that a little bit later on as well
+uh so I'm going to Alias it and make a relationship between this dim product table and the fact internet sales table
+so I'm going to say I want to pull data from the factory minute sales table and I also want to do a join here with the
+dim product table and I'm going to call that one DP now what's the relationship
+how are these two tables talking to each other right they're in the same lake house so maybe they have some communication maybe not but these two
+actually do have a relationship and it's going to be on something known as the product key so there is a a key column
+on the product table called product key that I can actually relate back to the
+fact internet sales table so I'll say on the relationship that DP uh the dim
+product table dot product key you is equal to the FIS dot product key as well
+now from here I'm going to go through and I'm going to run a select statement I'm going to pick out what columns I
+want to see now I want to see from the dim product table the English product
+name so the English product name if I can type here is one column I want to
+see on this table the other one's actually going to be an aggregated column so what I'm eventually doing here
+is I want to go through and I want to show a query that has the product names and account of the product sales how
+many of these different products did we actually sell I can go through and analyze that with SQL very quickly and
+not have to use an Excel work with the different sheets there to try and make that relationship happen if you know SQL
+this is a pretty easy thing to go through and author so we're going to use the count function and we're going to go
+through and do a count of the uh fact internet sales table dot product key and
+we're going to call that the count of product then we're also going to go through and
+because the way we write SQL out because of SQL properties we're going to have to do something known as a group buy
+because we're doing an aggregation we want to say how to contain the records that we are viewing against the
+aggregation so we're going to say I want to group by DP dot English
+English product name and from there we can also go through and do an order by
+the count of product all right let's go through let's run our
+SQL let's see our results now here we go we have our results for
+us now what happens when we order by is we're going to get this natively in ascending order so it's going to be in
+this instance our lowest Value First to our highest value next but all we need to do to get that in descending order
+and get the highest value first is use the reserve keyword desc for descending
+flip that around see those results ah apparently as this Bicycle Company we are selling water bottles at a
+phenomenal rate in patch kits entire tubes fixes for bicycles we also have some other bicycles down here and
+helmets and things like that as well awesome now maybe you're saying Austin you know that's great but I don't know
+SQL and I don't really have time to learn SQL right now and hey that's okay what also is present inside of the SQL
+endpoint is this ability to have something known as a new visual query so
+we can go through and do the same exact thing we just did working with a visual query something that looks very similar
+again to the the principles behind the power query editor so what I'm going to
+do is from here on my visual query I'm just going to drag and drop my different tables into this option right here I'm
+going to drag and drop the dim product and I'm going to drag and drop the fat internet sales from here I can use a
+graphical user interface to go through and create this same SQL script and get
+those same results without having to understand the principles of SQL that are happening in the background to
+generate that so we're going to go through and we are going to do a merge I'm going to go to
+my fact internet sales over here and uh click on the plus icon next to fact
+internet sales and I can go through and I can do a merge of my two queries so
+I'm going to say what is this merge going to be well this is a simple kind of principle that we just did before
+right we have the left side of our table what's going to be the right side of our join that we're going to make between
+these two it's going to be dim product what is the relationship between these
+two columns or two tables it's going to be the product key on Dem product and the product key and fact internet sales
+what type of join are we going to want to do well we're going to go through and do an inner join all those same things
+we just did with SQL can be done here through a graphical user interface potentially enabling more people in your
+organization to go and write these queries out so I'm going to go through and say okay
+from here that's going to line this up merge these two together but we're not done quite yet right this has gone
+through and essentially just gave us all the different columns here what I'm going to want to do is click on this dim
+product uh expand right here I'm going to go through and pick and choose what columns I want to actually pull over
+from the dim product table and relate that to my fact internet sales table and
+the main thing I'm concerned about here I'm going to deselect all of these and I'm just going to actually pull over my
+English product name all I really want to see from that dim product table is what is the English product name we have
+the relationship we don't need to have the attributes about that right we're just going to pull that one query over
+that one uh column over from there and then get our results so now we have
+English product name alongside of the rest of the results from fact internet sales which is awesome now how do we go
+through and do an aggregation like we did with c equal well I just continue on my path and continue building out this
+query from the visuals so I'm going to click on the plus icon here and say I'm going to do a group by now the group by
+option underneath the plus icon is going to give you some basic ideas of what you want to write right what are you going
+to group by we're going to group by the English product name what are we going to do with that how are we going to
+aggregate compared alongside of that well we're going to do a count of product just as we did before which is
+going to
+make sure my screen was loading there hopefully that was good on y'all's side uh so we'll say okay we've gone through
+and now we have this count of rows from here we can go through and also just click on the drop down again kind of
+giving us a view of the power query and say we want to sort descending and now we should see the uh what with water
+bottles right as the first product so just like that regardless whether you know SQL or not we're able to go through
+and put those results inside of our query and leverage this and then input
+those results somewhere else or visualize these results in some way or download the Excel file so some pretty
+awesome capabilities that you can work with inside of the SQL endpoint
+now I got one other thing I want to do with the lake house before we kind of start tying this back to the power bi
+desktop tool so if you're following me where I would like you to go now is I'm going to go back to the lake house
+itself so I'm going to click on my drop down SQL endpoint in my top right corner click on lake house here now inside this
+lake house right we have our Delta tables I can go through and see my dim product right and I have my files here
+but what if you just get a delimited text file that comes in right what if you just have a file that comes in and
+you come it's like a date table right or it's some other table right you want to go through and analyze that as well
+alongside of everything else you have inside of your environment where I can go through and actually just upload a
+file to my lake house and then just drag and drop it over into my tables and it's
+going to create that for me really really quickly so let's do that now so I'm going to click on again the Ellipsis
+for files and upload the other file that is inside of your class files called dim
+date and that is a DOT CSV or delimited text file so I'm going to upload the
+file here click on my browse icon and select dim date and then once you have
+that selected for yourself go ahead and say that you want to open that up and upload and this should take almost no
+time at all to upload mine is already good to go so the SQL in uh Christian I saw your
+question the SQL endpoint of the lake house only supports read operations right now that is correct
+um in the warehouse which I don't think we're gonna have time to get to today maybe can do a follow-up how we create the warehouse from a lake house or
+something like that um but from a warehouse you will have more of those different operations available to you where you can create
+tables and create views and things like that there but in the SQL endpoint of the lake house you are correct with that
+so great Point uh for for you there uh uh we now have a new file that has been
+loaded into our lake house this dim date now get ready for this this is this is
+Magic uh this is one of the most impressive things I think about working inside of of this lake house here I'm
+gonna drag and drop dim date click on it drag and drop right into tables
+I'm going to name the table I want to create leave it lowercase if you try and correct it it'll it'll mess up we can we
+can rename it in a moment if you're OCD like me and need it to be capitalized the same way the other tables are but go
+ahead and say load this is going to take just a few moments for us to go through and what we did inside of that data flow
+essentially the same process is happening in the background it's taking that file it's using some of the magic
+of fabric some of the back end of fabric to take that file and convert it to a parquet file with the Delta log
+transaction history and it's going to create this Delta table inside of that and there it is just like that really
+cool it doesn't have to be that complex you don't have to go through necessarily use spark to do this with a notebook you
+don't have to use a pipeline necessarily with a notebook to do that either so some really awesome capabilities uh that
+we have here when working in one lake with lake house
+um yeah Scott great question there if you have a file that you need to change
+around you would probably want to do that um with a data flow or you could potentially use a pipeline to do that as
+well I was kind of seeing maybe if we had time to do a pipeline today but I don't think I am going to have again a
+couple videos uh that shoot off of this learn with the nerd session that me and my team here do at pragmatic work so be
+on the lookout for those um where we can maybe load this lake house with a pipeline and uh maybe do
+some other things with power bi as well here also all right so where I think we absolutely
+need to get to next as we kind of start winding down our time uh throughout this session today is talking about working
+with power bi in this tool now one thing that is glaring up here is maybe you've
+noticed it here is the power bi data set new power bi data set Austin what is
+that about what is that doing what are we what are we working with here right so we have of course if I go back over
+to my alarm with the Nerds uh workspace we have this default data set right this
+is just going to take everything that exists in my lake house and give my users access to it now what if I have
+some data that I don't want them to access what if I have they don't need necessarily access to all of that why would I go through and create a data or
+have them access everything in my lake house hundreds of tables potentially when they only need access to three or
+four well what I can do as a part of this when I go over to my lake house I
+can create my own power bi data set from here and just hand that off and give permission to go and have my analyst use
+that in the desktop tool and work with that capability instead so I'm going to click on this new power bi data set
+button here and just to give you an idea of what it's going to do we're going to select all of our different tables
+coming from the data from the lake house we want everything for ourselves because we have three tables we don't have 300
+right but from here once I've selected those options I'm going to go through and say I want to confirm pull those
+over and then once we get in here you're going to see a very familiar screen again if you have worked in the power bi
+desktop uh pretty much at all right you have seen something called the model view and that's exactly what we're going
+to see inside of this as well this should be a very familiar UI to you now
+how do we go through how to relate these tables together how do we make relationships what's also really cool
+here as well is you have the ability to go and write Dax expressions and create measures here in the power bi service
+that is really cool that is awesome that was not available
+I'm going to go through and I'm going to take the date key and I'm going to relate that to the order date key from
+the fact internet sales table you'll notice that we get the create relationship if we wanted to change
+something about that now we potentially could but we're just going to say that we want to confirm that so we have a
+one-to-many relationship that has been created from the date table to the fact table on our dim product table here
+maybe you already know because we've used it a couple times but the relationship between these two tables is
+going to be from the product key to the product key so I'm going to drag the dim
+product key drag and drop this over to that one there and make sure I confirm
+that relationship as well and now I have this fact star schema feeding into my
+fact table dimension tables here giving context to the facts of my sales of this
+table now keep in mind here that changes you make to this data set will be permanent you
+even see this kind of as a mention right here hey if you make a change here this data set has been affected now this is
+not going to affect our our lake house data set we still have our core data set we probably want to go through and give
+this a better name this is our adventure Works user data set that they can go
+through and work with we have our core one that we can use as administrators or as owners of a specific lake house but
+we want our users to access this one specifically and then we can also go through and look
+at this other absolutely key feature that we need to talk about as a part of fabric if I hover over on this blue icon
+here the kind of blue dotted lines here notice what this says oh it disappeared on me notice what this says this says if
+it will pop up it's not going to want to there we go storage mode direct Lake name factinet
+sales storage mode directly what is direct click maybe you've heard about that maybe you have it uh heard about
+directly let's talk a little bit more about what is directly because it's really the purpose and the key of why
+we're doing this as power bi developers inside of fabric anyway so direct click mode is a new data set
+capability in fabric for analyzing large volumes of data directly combines the
+speed of import mode where you import data directly into a power bi desktop file with the ease of access and
+up-to-date data of a direct query so combining the two together direct link
+allows for the loading of those parquet formatted files directly from a data
+Lake without the need for querying a lake house endpoint or importing data
+into the power bi data set so this mode really enables the the fast loading of
+data from the lake from the one Lake uh into the power bi engine for analysis so
+in comparison um direct query mode something you may be used before right data is queried
+directly from the source and it reflects any change almost immediately uh import
+mode improves performance by caching and optimizing data for business
+intelligence queries but it requires copying data into the data set during refresh and changes that the source are
+only picked up during the next refresh so you either have to refresh all the time or just know that you don't have
+potentially the most up-to-date data available to you direct Lake mode
+combines the advantages of direct query and import mode together and it eliminates the need for data import by
+loading data directly from one Lake it offers similar performance to import mode as it bypasses translation to other
+query languages and then it additionally enables real-time updates for data source making it very suitable for
+analyzing large data sets with frequent updates now direct link mode is only supported
+in the Microsoft fabric so it's not something you're going to see available to you as a part of the traditional
+power bi service it is going to leverage the lake house and you're going to have to provision a lake house to be able to
+work with it so what are we going to do now with this well we can go through back to our our model over here our data
+set that we have that we've created from here remember changes have happened permanently or automatically saved I
+want to go and I want to access this directly inside of the power bi desktop tool so I'm going to go through and I'm
+going to open up my power bi desktop if you have it installed and ready to go or already open maybe you can go through
+and leverage that as well so now one give it a moment for this to load let's look and see if we have a
+good question over here um yeah Mario if we enable fabric can we
+turn on just for a specific team to build yes yeah you you can enable certain users to work with fabric uh one
+of the things I didn't mention as well which is absolutely phenomenal with fabric is you have the ability to pause a fabric workload as well potentially
+depending on your your use case right if at the end of the day you no longer need
+access to this you can pause the fabric workspace and you can only pay at an hourly rate or you can sign up for
+different levels of service I would definitely check out one of our videos on the on-demand learning platform on
+the YouTube actually on our YouTube uh taught by Manuel Quintana uh one of our other team members here that's uh diving
+into fabric with me on working with fabric licenses and compute and all that
+stuff there all right so back over inside of my power bi desktop uh we have our
+traditional uh desktop here if you have uploaded or updated this in a in the last month or two one thing
+that has been added here that is part of all of this fabric stuff is the one Lake
+data Hub right there in the home ribbon you can see it it's staring in the face maybe you've updated yours and haven't
+even noticed it but it's available to you if I click the drop down for my one Lake data Hub I can see that
+I can go through and access data Marts which are also a part of one like infrastructure I can access my lake
+house I built potentially a warehouse that I've built or my power bi data set that I authored in the service so let me
+open up my power bi data set and there it is right at the very top Adventure
+Works user just created just had the ability to go through and access that so
+let's go through and connect to that data set this is using my credentials in
+my Azure active directory my Microsoft 365 credentials because I'm logged in
+over here so I have been given immediate access to my dim date table to my dim product table I can go through and look
+at the model view of this and it looks a little odd now uh you won't be able to necessarily go through and edit some of
+this here again it's going to be something that is only editable in the power bi service in fabric but you can
+see the relationship of how your data was built I could eventually go through and do a visual here to give myself
+um some sort of record just to show you that this is going to work now with this data set here
+um when you go through and leverage a data set that is working against a lake house uh if for whatever reason the data
+sample is too large or you um there's some sort of failure you do revert back to a direct query so it
+doesn't just give you an automatic fail or anything like that so um you do have the ability to leverage
+that so let's just go through and do a uh count of the product key really quickly and there we go that quickly we
+loaded our car visual obviously we don't have a lot of data here we're not talking about millions and billions of
+Records or anything like that but this is going to be much more performant as
+opposed to working with um uh direct query potentially or uh
+only direct query and it's going to have that automatic uh updated data like
+direct query also provides for us now we have
+an 18 minutes or so before we kind of start wrapping up might end about 10 minutes or so but I want to give an
+opportunity for some questions in the chat I know that we had Brad answering some questions in the chat and he might
+have had to step out for a little bit got some Microsoft stuff to attend to I want to thank him again for joining us
+today but I want to answer a couple of these questions in the chat that we have before we end out our session because I know there's a lot of stuff about fabric
+we've covered just kind of the the introduction to what a a user in fabric would be working with a I want to go
+through I work with Excel I work with CSV what does that mean for me in fabric also
+um so we say is that new data set creating a copy of the data in the data
+lake house or is it acting as a view of the data still in the lake house because
+of the way that we did this it is going to be a copy of the data essentially so
+it's going to have all the records there um if you wanted to go through and author things like views and things like
+that and work with that you would maybe consider going over and looking at a warehouse where you have the ability to
+create some of those things a little bit more but that would be the um the the kind of idea there it is
+looking at the live data in the lake house itself how does the data update uh
+what happens when new bike sales comes in that's a great question right so there's a couple different ways we
+could potentially update our data right we have this Source system maybe it's a SQL server on premises maybe it's just a
+new file that comes in we would want to set up some sort of flow with a data
+flow as we connect to that if that if that CSV file that Excel the Excel file in our one link gets updated we update
+that specific file that data flow could be scheduled and kick off on a recurring
+timeline and update to the newest records or potentially the other thing that we might be able to Leverage is
+something called a pipeline let me just go through really quickly and see if we can look at what a pipeline would look
+like as well so we have our lake house over here and we have the ability to get data with a data flow but we also have
+the ability to get data with a pipeline this new data pipeline button here I'll click this really quickly It'll ask me
+for a name pipeline a one go ahead and create that really quickly but this is another tool that comes from day data
+Factory and synapse analytics that could potentially be used to schedule out workflows a pipeline is nothing more
+than a set of activities that you want to go through and have run at a
+recurring time hey I want to run this every hour I want to have this run every Friday at 8 pm right you can set up
+triggers you can set up events that go through and kick off this data integration and ingestion you can also
+use spark notebooks a variety of ways to do that and all these things can be scheduled here now we have again our
+lake house as our source here so again if you've ever worked with beta Factory pipelines before you're going to see I
+think this UI is even a lot easier than it is in data Factory once you kind of learn the ins and outs of that that
+one's pretty easy as well but this is so intuitive hey what's our data source well it's going to be again that lake
+house that we can go through and work with we can go through and obtain access to that existing lake house as well from
+here we can click next we can go through and either look at our tables or our files I want to see my files again I
+want to go through and look at this adventure works now this is going to take a moment to load here but uh while we're doing that I'll answer another
+question um Daniel yes does this mean you can create
+Dax on the data in the power bi model using the lake house connection uh yes
+um if you are working with that specific uh Power bi data set you create in
+fabric you have the ability to go and create a new Dax measure inside of that
+that space yes you do have the ability to do that now in power bi
+um once we create a power bi report in the desktop do we still publish it in the same way um does this remove the need for a
+Gateway well it would just depend gateways have not gone the way of the dinosaur uh gateways are still going to
+be present in fabric when you are connecting with data that is coming from an on-premises data source you would
+move it over to fabric as a part of a workflow an ETL process right so you
+still need data gateways um but to answer your question about power bi reports you definitely still publish
+them the same way um you can publish a report to a fabric workspace assuming you have the ability
+to work in that space um just the same way you would as long as you have permission you can publish it from the desktop tool but great
+question there um so we go through and connect to a data source now here are different sheet
+names let's just pick one dim geography we can go through it does make us load a
+preview of the data which is a little uh takes a few moments here to do that also but once we do that we've connected to
+the data source which is our adventureworks DW Excel file we can choose the destination which is going to
+be the lake house as well and then we can also go through and we can schedule this to happen on a recurring time but
+wherever your source is coming from again if we were to look back at some of these sources here whether it's an Azure SQL database whether it's another data
+Lake an external data Lake to our one link whether it's a SQL server on premises or a file system on premises
+wherever it's coming from we can make that connection that's our source that's the place we're taking the data from and
+then we just need to decide where we want to load the data to as our destination it's going to go to our
+adventure Works lake house we're going to give this a name Bim geography
+we're going to say we want to go through and look at the next option here a just a summary of what's Happening we're
+taking data in our lake house that's the file and we're loading it into a table
+structure and the Delta format uh start data transformation immediately we're
+going to go through and run that and this is actually what the UI of the pipelines are going to look like so
+again have familiarity with data Factory or synapse pipelines this looks almost identical we have our copy data activity
+our core activity that we work with inside of data Factory we have the source we have the destination there's a
+few things that have changed they actually have some pretty cool new activities here as well inside of the
+pipeline you can go through and use an Office 365 Outlook activity or a teams
+activity so kind of integrating some of those different Microsoft Technologies there there's also one for data flows so
+that same data flow that I just authored earlier in our class I could potentially go and schedule out now I could schedule
+out a spark notebook as well from this here so we have different ways we can go through and leverage that this is
+running it'll take about a minute or so to run let's see do we have any other questions in the chat before we start wrapping up our session today
+foreign options for moving data data flows
+equivalent in performance um absolutely not uh so spark notebooks
+are going to be one of our most performant ways to take and move data right spark is going to have a much
+quicker processing against vast amounts of data terabytes of data potentially than a pipeline would or a data flow
+would so uh there's going to be times when hey we're dealing with some streaming data source or uh some batch
+source that has a million records a day that are getting appended to it um that would be a use case potentially for
+working the spark versus a pipeline it would take quite a bit longer to have that execute it really depends on how
+quickly you need access to the data and how quickly you want to load that to your lake house um connect to snowflake I don't know off
+the top of my head but Lee no I don't think it can currently I know it can connect to Amazon I believe and I
+apologize if I got that wrong but uh I believe Amazon S3 data Lakes essentially
+um have the ability to make a connection to that so they're they're building more connections um as we speak but uh
+there's some limitations right now um at least as a part of the Native UI to one Lake it might be something you
+can connect with as a part of like a source in a copy data activity so this pipeline succeeded let's go over to our
+lake house and then we'll start wrapping this up just to see this one more time our lake house over in our kind of
+navigational pane all of our tabs that have opened there's our Dem geography table open for us now and ready to go
+and start analyzing also and then we could potentially go through and add this to the data set we created
+earlier or create a new data set off of this so a lot of different options all right well I want to thank everyone
+for joining us today hopefully you have an insight and an idea of what is happening uh with fabric what is fabric
+how can I start using Fabric in my own environment if that gets enabled right away uh pragmatic works is going to be
+here always for you uh for to give you training content this is not the last you're going to hear fabric from us uh
+it is an exciting new topic and hopefully you see some of the benefits to working inside a fabric for yourself
+now before we end I do want to make sure I re-highlight hey don't forget about that season learning pass a great
+opportunity to go through and gain access to a lot of the different platforms and content pragmatic Works
+has out there right now but before we in today I want to kind of give you a sneak
+peek of what is coming next month in our next learn with the Nerds session taught
+by Brian Knight himself it is going to be a power apps hackathon next month
+what's a hackathon it's another thing that pragmatic Works does that we take your data and we help you build out a
+solution for yourself so if you want to work with your data and not like our sample data you could potentially do a
+hackathon we're going to get a like a an idea into how that happens through Brian Knight one of our power apps
+extraordinaires the founder of pragmatic Works uh so he is going to uh deliver that to you next week you're going to
+get to see a power app built live and In the Flesh so that's going to be August
+10th definitely sign up on the QR code there I want to thank everyone again for
+attending today I want to thank Brad as well for managing the chat for our first part of the day so you all have a great
+rest of your week keep looking at fabric keep learning about fabric it's not going away it's here to stay so
+hopefully you enjoyed today I'll see you in the next one
+foreign 
