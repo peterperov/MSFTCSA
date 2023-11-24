@@ -3,14 +3,18 @@ import pandas as pd
 import re
 import csv
 
+from ExtractExcelTranspose import  TransposeExcel
 
 search = r'\d{4}-\d{2}'  
 
 print( "Hello world")
 
-fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2023-10-30-091114.xlsx"
+fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2023-11-23-142316.xlsx"
 
- 
+
+
+TransposeExcel(fileName)
+
 # read by default 1st sheet of an excel file
 # "ACRs SL5"
 df = pd.read_excel(fileName, sheet_name = 2)
