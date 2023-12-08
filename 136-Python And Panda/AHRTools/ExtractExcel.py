@@ -9,7 +9,7 @@ search = r'\d{4}-\d{2}'
 
 print( "Hello world")
 
-fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2023-11-23-142316.xlsx"
+fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2023-12-06-100203.xlsx"
 
 
 
@@ -109,4 +109,6 @@ newDF[ colname.format(cnt = 8)] = newDF[col4] - newDF[col5]
 # df['2023-07MOM'] = df['2023-07'] - df['2023-06']
 
 newDF.to_csv(fileName + '.new.csv')
+
+df.to_csv(fileName + ".new.dmp")
 
