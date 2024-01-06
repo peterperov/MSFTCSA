@@ -175,10 +175,14 @@ go through and query and build tables on that lake house how do I do that as a d
 multiple sheets but after you create a lake house you can load data in a variety of different ways you can load
 data with a pipeline we talked about earlier you can load data with a spark notebook you can load data with a data
 flow so we can pull data from all these different sources depending on your preferred tool of choice
+
 now overview key takeaway and then we're going to jump into our first demo so fabric is a One-Stop shop for analytics
 uh visualization storage sharing integration all built into one platform fabric is available in currently power
 bi premium workspaces but it's eventually going to have its own fabric SKU that is out on the market now that
-you could potentially go and purchase pragmatic Works has a video on how to go through and set up that in your
+you could potentially go and purchase 
+
+
+pragmatic Works has a video on how to go through and set up that in your
 environment as well as some of the information around cost and billing around fabric skus one lake is a
 scalable storage account for organizational data that eliminates needs to move and copy data from across
 multiple systems and a lake house is a warehouse that has the storage layer of
