@@ -1,0 +1,33 @@
+Hello everyone, 
+
+Given the scope of this project and multiple people engaged from both customer and Microsoft side, I would like to suggest utilizing Tech@Scale framework for this project. 
+
+It is our experience that navigating the cloud can be a complex task, Azure alone has 500 services, and it is why we have introduced Tech at Sclale framework with the aim of simplifying the process. 
+
+The Framework is focusing on 3 stages: 
+
+Discovery - we identify Whats and Whys of what needs to be done, the project scope, stakeholders, requests, concerns and outcomes. 
+
+Design - usually a technical session led by one of our Cloud Solution Architects where we explore the technical parts of the solution and recommend services that best fit customer requirements.
+
+Delivery - managed by hands on technical teams from Microsoft or  Partner ecosystem. 
+
+The goal of Tech@Scale is to collect and summarize the information about the project. Microsoft runs many cloud projects and it is our collective experience that having a single document with all the information greatly helps sharing information when engaging multiple teams from all sides.
+
+I would also like to mention few instruments at our toolbox, that enable to accelerate delivery of the cloud project:  
+
+Cloud Adoption Framework - a collection of guidance and best practices that help you confidently adopt the cloud and achieve business outcomes. The primary audience of Cloud Adoption Framework is business stakeholders, IT leadership and management. It covers strategy, planning, training, execution, management and governance of the cloud landscape of the organisation. 
+
+Well Architected Framework - a design framework aimed at a technical engineering personnel and management, helping you to design, implement and review the actual cloud architecture and implementation. 
+
+Various solution assessment - technical questionnaires helping you to identify important areas of focus in the technology landscape.
+
+Solution Accelerators - is a collection of ready to deploy solutions from our real world engagement with the customers. It can be used as a starting foundation of your cloud project, greatly accelerating time to value. 
+
+The goal of Tech@Scale session is to find out the project details, create high level initial design document, identify instruments that helps for this project delivery and collect all relevant request and concerns. 
+
+The end result is a storyboard document containing all the relevant information that can be shared between various teams, facilitating complex information exchange throughout the project. 
+
+With this I would like to propose a Tech@Scale session between Microsoft and the members of your technical team together with business stakeholders, as it covers both business and technical requirements, and it would be ideal if both sides are present on this meeting. 
+
+Thank you very much. 
