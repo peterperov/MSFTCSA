@@ -9,15 +9,17 @@ search = r'\d{4}-\d{2}'
 
 print( "Hello world")
 
-fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2023-12-06-100203.xlsx"
+fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2024-04-11-101512.xlsx"
 
 
 
-TransposeExcel(fileName)
+# TransposeExcel(fileName)
 
 # read by default 1st sheet of an excel file
 # "ACRs SL5"
-df = pd.read_excel(fileName, sheet_name = 2)
+df = pd.read_excel(fileName, sheet_name = 1)
+
+df.to_csv(fileName + ".csv")
  
 # print(dataframe1)
 

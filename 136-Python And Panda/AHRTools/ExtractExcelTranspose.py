@@ -13,7 +13,7 @@ def TransposeExcel(filename):
 
     selectedColumns = {"SummarySegment","Segment","SubSegment","ATU","SalesTerritory","TopParent","TPID","ServiceLevel1","ServiceLevel2","ServiceLevel3","ServiceLevel4","ServiceLevel5","ServiceInfluencer"}
     
-    df = pd.read_excel(filename, sheet_name = 2)
+    df = pd.read_excel(filename, sheet_name = 1)
 
     cnt = 0
     r = 0
