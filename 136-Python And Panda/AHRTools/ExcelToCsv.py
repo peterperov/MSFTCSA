@@ -9,7 +9,10 @@ search = r'\d{4}-\d{2}'
 
 print( "Hello world")
 
-fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Report-C2025-04-10-181611.xlsx"
+folder = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/"
+folder = "W:/01/"
+
+fileName = "AHR-Report-C2025-04-10-181611.xlsx"
 
 # TransposeExcel(fileName)
 
@@ -17,9 +20,10 @@ fileName = "C:/Users/peterperov/OneDrive - Microsoft/Desktop/AHR Reports/AHR-Rep
 # "ACRs SL5"
 df1 = pd.read_excel(fileName, sheet_name = 0)
 
-df1.to_csv(fileName + ".1.csv.dmp")
+df1.to_csv(fileName + ".1.csv.dmp", index=False)
 
 df2 = pd.read_excel(fileName, sheet_name = 1)
 
-df2.to_csv(fileName + ".2.csv.dmp")
+df2.to_csv(fileName + ".2.csv.dmp", index=False)
+
 
