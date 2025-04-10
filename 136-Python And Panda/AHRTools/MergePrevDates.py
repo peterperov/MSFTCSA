@@ -4,6 +4,9 @@ import pandas as pd
 file1 = 'file1.csv'
 df1 = pd.read_csv(file1)
 
+# Create a composite key in the first DataFrame
+df1['key_column'] = df1['ServiceLevel1'].astype(str) + '_' + df1['ServiceLevel2'].astype(str)
+
 # Load the second CSV file
 file2 = 'file2.csv'
 df2 = pd.read_csv(file2)
