@@ -4,7 +4,7 @@ import os
 folder = 'W:/Azure/Reporting/'
 
 # Load the first CSV file
-file1 = os.path.join(folder, 'AHR-Report-C2025-04-10-181611.xlsx.2.csv')
+file1 = os.path.join(folder, 'AHR-Report-C2025-04-13-115457.xlsx.2.csv')
 df1 = pd.read_csv(file1, usecols=lambda x: x not in ["", "Unnamed: 0"] )
 
 print( df1 )

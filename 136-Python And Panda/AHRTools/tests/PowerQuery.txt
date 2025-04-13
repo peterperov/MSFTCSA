@@ -1,0 +1,36 @@
+let
+    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WUtIBIUcgdsJJx+pEKyUmJkKUOjlCaHQEUpSUlIRdEqYNpCg5ORmXNNSkWAA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Name = _t, Another = _t, #"1" = _t, #"1.1" = _t, #"2" = _t, #"2.1" = _t, #"3" = _t, #"3.1" = _t, #"4" = _t, #"4.1" = _t]),
+    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Name", type text}, {"Another", type text}, {"1", type text}, {"1.1", type text}, {"2", type text}, {"2.1", type text}, {"3", type text}, {"3.1", type text}, {"4", type text}, {"4.1", type text}}),
+    ConditionalColumns = List.Select(Table.ColumnNames(#"Changed Type"), each try Number.From(_)>0 otherwise false),
+    ContainsBA = List.Accumulate(ConditionalColumns, {}, (a, n)=>  if List.Contains(Table.Column(#"Changed Type", n), "BA") then a & {n} else a),
+    SelectColumns = List.Select(ConditionalColumns, each not List.Contains(ContainsBA, Text.Start(_, 1))),
+    Output = Table.RemoveColumns(#"Changed Type", SelectColumns)
+in
+    Output
+
+
+
+
+let
+    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WSlTSUTI2VQWShqYGQNIUiM2A2FwpVidaKQnIMoLIGoBkLUCqgRgsmQxkmIDkjGAawTKxAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Unique ID" = _t, Factor1 = _t, Factor2 = _t, Value1 = _t, Value2 = _t, Value3 = _t]),
+    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Factor1", Percentage.Type}, {"Factor2", Int64.Type}, {"Value1", Int64.Type}, {"Value2", Int64.Type}, {"Value3", Int64.Type}}),
+    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Unique ID", "Factor1"}, "Attribute", "Value"),
+    #"Grouped Rows" = Table.Group(#"Unpivoted Other Columns", {"Unique ID", "Factor1"}, {{"Total", each List.Sum([Value]), type number}}),
+    NewColumn = 
+        Table.AddColumn(
+            #"Changed Type", 
+            "Value X", 
+            each 
+                let
+                    varCurrentID = [Unique ID]
+                in
+                Table.SelectRows(
+                    #"Grouped Rows", 
+                    each [Unique ID] = varCurrentID
+                )[Total]{0} * [Factor1],
+            Number.Type
+            )
+in
+    NewColumn
+
+    
